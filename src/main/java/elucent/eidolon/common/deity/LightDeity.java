@@ -31,7 +31,7 @@ public class LightDeity extends Deity {
         } else if (lock.equals(DeityLocks.CURE_ZOMBIE)) {
             KnowledgeUtil.grantSign(player, Signs.DEATH_SIGN);
         } else if (lock.equals(DeityLocks.SMITE_UNDEAD)) {
-            KnowledgeUtil.grantSign(player, Signs.BLOOD_SIGN);
+            KnowledgeUtil.grantSign(player, Signs.WARDING_SIGN);
         }
     }
 
