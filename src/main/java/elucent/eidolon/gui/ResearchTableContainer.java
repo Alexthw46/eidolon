@@ -124,7 +124,9 @@ public class ResearchTableContainer extends AbstractContainerMenu implements Con
         if (slot.hasItem()) {
             ItemStack itemstack1 = slot.getItem();
             itemstack = itemstack1.copy();
-            if ((index < 0 || (index > 2 && index < 38))) {
+
+            // we are in the player inventory
+            if ((index < 0 || (index > 1 && index < 38))) {
 
                 boolean placeInExtraSlots = false;
                 for (int extra = 38; extra < slots.size(); extra++) {
@@ -153,8 +155,8 @@ public class ResearchTableContainer extends AbstractContainerMenu implements Con
                 } else if (!this.moveItemStackTo(itemstack1, 2, 38, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else {
-                if (!this.moveItemStackTo(itemstack1, 2, 38, true)) {
+            } else { // we are in the table slots
+                if (!this.moveItemStackTo(itemstack1, 2, 38, false)) {
                     return ItemStack.EMPTY;
                 }
 
