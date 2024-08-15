@@ -25,6 +25,7 @@ public abstract class SpellProjectileEntity extends Projectile {
     public static final TagKey<EntityType<?>> TRACKABLE_BLACKLIST = TagKey.create(ForgeRegistries.ENTITY_TYPES.getRegistryKey(), new ResourceLocation(Eidolon.MODID, "trackable_blacklist"));
 
     public Predicate<Entity> trackingPredicate = this::shouldTrack;
+    public Predicate<Entity> compulsoryTrackingPredicate = this::mustTrack;
     public boolean isTracking;
     public boolean noImmunityFrame;
 
@@ -51,7 +52,11 @@ public abstract class SpellProjectileEntity extends Projectile {
     }
 
     private boolean shouldTrack(final Entity target) {
-        return !target.isSpectator() && !target.getUUID().equals(getOwnerUUID()) && !target.getType().is(TRACKABLE_BLACKLIST) && (target instanceof Enemy || target.getType().is(TRACKABLE));
+        return !target.isSpectator() && !target.getUUID().equals(getOwnerUUID()) && !target.getType().is(TRACKABLE_BLACKLIST);
+    }
+
+    private boolean mustTrack(final Entity target) {
+        return target instanceof Enemy || target.getType().is(TRACKABLE);
     }
 
     @Override

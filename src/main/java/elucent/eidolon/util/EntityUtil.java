@@ -9,6 +9,7 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Comparator;
 import java.util.List;
@@ -51,7 +52,7 @@ public class EntityUtil {
             owner = projectile.getOwner();
             Predicate<Entity> targetMode = projectile instanceof TargetMode mode ? mode.eidolonrepraised$getMode() : null;
             if (entity instanceof SpellProjectileEntity spellProjectile)
-                targetPredicate = spellProjectile.trackingPredicate;
+                targetPredicate = (spellProjectile.compulsoryTrackingPredicate.or(targetMode != null ? targetMode : target -> false)).and(spellProjectile.trackingPredicate);
             else targetPredicate = targetMode != null ? targetMode : /* Should not happen */ FALLBACK_TARGET_PREDICATE;
         } else {
             owner = null;
