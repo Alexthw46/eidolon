@@ -48,7 +48,7 @@ public abstract class SpellProjectileEntity extends Projectile {
             return true;
         }
 
-        return shouldTrack(target);
+        return shouldTrack(target) && mustTrack(target);
     }
 
     private boolean shouldTrack(final Entity target) {
