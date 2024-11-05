@@ -58,7 +58,7 @@ public class SanguineAmuletItem extends EidolonCurio {
         if (!entity.level().isClientSide) {
             if (entity.tickCount % 80 == 0 &&
                 entity.getHealth() >= entity.getMaxHealth() - 0.0001 &&
-                entity instanceof Player player && ((Player) entity).getFoodData().getFoodLevel() >= 18 &&
+                entity instanceof Player player && player.getFoodData().getFoodLevel() >= 18 &&
                 getCharge(stack) < 40) {
                 float f = player.getFoodData().getSaturationLevel() > 0 ?
                         Math.min(4 * player.getFoodData().getSaturationLevel(), 16.0F) : 4.0f;

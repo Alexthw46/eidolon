@@ -64,10 +64,8 @@ public class EntityUtil {
             //for (Entity e : entities) System.out.println(e);
             LivingEntity nearest = entities.stream().min(Comparator.comparingDouble((e) -> e.distanceToSqr(entity))).get();
             Vec3 diff = nearest.position().add(0, nearest.getBbHeight() / 2, 0).subtract(entity.position());
-            double speed = entity.getDeltaMovement().length();
-            Vec3 newmotion = entity.getDeltaMovement().add(diff.normalize().scale(speed)).scale(0.5);
-            if (newmotion.length() == 0) newmotion = newmotion.add(0.01, 0, 0); // avoid divide by zero
-            entity.setDeltaMovement(newmotion.scale(speed / newmotion.length()));
+            Vec3 newmotion = entity.getDeltaMovement().add(diff.normalize()).scale(0.75);
+            entity.setDeltaMovement(newmotion);
         }
     }
 }

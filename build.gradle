@@ -21,8 +21,13 @@ apply plugin: 'net.neoforged.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'maven-publish'
 
-version = "${mc_version}-${mod_version}"
-archivesBaseName = 'eidolon_repraised'
+version = mod_version
+archivesBaseName = mod_id + "-" + mc_version
+
+
+if (System.getenv('BUILD_NUMBER') != null) {
+    version += "." + System.getenv('BUILD_NUMBER')
+}
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
@@ -135,8 +140,8 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-common:${jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
 
-    //implementation fg.deobf("top.theillusivec4.curios:curios-forge:${mc_version}-${curios_version}")
-    implementation fg.deobf("top.theillusivec4.curios:curios-forge:5.2.0-beta.3+1.20.1")
+    implementation fg.deobf("top.theillusivec4.curios:curios-forge:${curio_version}")
+
     ///*implementation*/ runtimeOnly fg.deobf("joefoxe:hexerei:0.3.2.2")
 
     runtimeOnly fg.deobf("software.bernie.geckolib:geckolib-forge-${mc_version}:${gecko_version}")
@@ -145,19 +150,22 @@ dependencies {
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:${mc_version}-81-FORGE")
     //runtimeOnly fg.deobf("curse.maven:cyanide-541676:3832812") // Cyanide
 
-    implementation fg.deobf("curse.maven:embeddium-908741:4800420")
-    implementation fg.deobf("curse.maven:modernfix-790626:4792389")
+    runtimeOnly fg.deobf("curse.maven:embeddium-908741:4800420")
+    runtimeOnly fg.deobf("curse.maven:modernfix-790626:4792389")
 
     implementation fg.deobf("curse.maven:placebo-283644:5414631")
     implementation fg.deobf("curse.maven:apothic-attributes-898963:5340012")
     implementation fg.deobf("curse.maven:apotheosis-313970:5486368")
 
-    implementation fg.deobf("curse.maven:amendments-896746:5200593")
-    implementation fg.deobf("curse.maven:selene-499980:5201144")
-    implementation fg.deobf("curse.maven:spit-it-out-857141:4888754")
+    runtimeOnly fg.deobf("curse.maven:amendments-896746:5200593")
+    runtimeOnly fg.deobf("curse.maven:selene-499980:5201144")
+    runtimeOnly fg.deobf("curse.maven:spit-it-out-857141:4888754")
 
     implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:0.2.0-beta.8"))
     implementation("com.github.llamalad7.mixinextras:mixinextras-forge:0.2.0-beta.8")
+
+    runtimeOnly fg.deobf("team.lodestar.lodestone:lodestone:1.20.1-1.6.4.252")
+    runtimeOnly fg.deobf("com.sammy.malum:malum:1.20.1-1.6.5.242") { transitive = false }
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }

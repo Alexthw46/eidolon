@@ -6,6 +6,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.HitResult;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -32,6 +33,13 @@ public abstract class ProjectileMixin extends Entity implements TargetMode {
     @Override
     public @Nullable Predicate<Entity> eidolonrepraised$getMode() {
         return eidolonrepraised$targetMode;
+    }
+
+    //set target mode to null after the entity is hit
+    @Inject(method = "onHit", at = @At("TAIL"))
+    private void eidolonrepraised$onHit(HitResult pResult, CallbackInfo ci) {
+        if (pResult.getType() != HitResult.Type.MISS)
+            eidolonrepraised$setMode(null);
     }
 
     @Inject(method = "tick", at = @At("TAIL"))

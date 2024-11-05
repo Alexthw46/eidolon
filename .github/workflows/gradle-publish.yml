@@ -43,13 +43,15 @@ jobs:
           modrinth-id: eWX2m1eM
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
-          files-primary: build/libs/!(*-@(dev|sources)).jar
-          files-secondary: build/libs/*-@(dev|sources).jar
+          files: |
+            build/libs/!(*-@(dev|sources|javadoc)).jar
+            build/libs/*-@(dev|sources|javadoc).jar
           version-type: beta
-          loaders: forge
+          loaders: |
+            forge
+            neoforge
           name: Eidolon:Repraised ${{ env.MINECRAFT_VERSION }}-${{ inputs.version }}
           version:  eidolon_repraised-${{ env.MINECRAFT_VERSION }}-${{ inputs.version }}
           game-versions: |
             ${{ env.MINECRAFT_VERSION }}
           changelog: ${{inputs.changelog}}
-          version-resolver: exact
