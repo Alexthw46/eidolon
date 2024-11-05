@@ -41,6 +41,7 @@ jobs:
         with:
           curseforge-id: 870250
           modrinth-id: eWX2m1eM
+          modrinth-featured: true
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
           files: |
@@ -51,7 +52,6 @@ jobs:
             forge
             neoforge
           name: Eidolon:Repraised ${{ env.MINECRAFT_VERSION }}-${{ inputs.version }}
-          version:  eidolon_repraised-${{ env.MINECRAFT_VERSION }}-${{ inputs.version }}
-          game-versions: |
-            ${{ env.MINECRAFT_VERSION }}
+          version: eidolon_repraised-${{ env.MINECRAFT_VERSION }}-${{ inputs.version }}
+          game-versions: ${{ env.MINECRAFT_VERSION }}
           changelog: ${{inputs.changelog}}
