@@ -11,5 +11,7 @@ public interface IBurner {
 
     boolean canStartBurning();
 
+    void extinguish();
+
 }
 

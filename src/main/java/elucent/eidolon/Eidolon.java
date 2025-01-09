@@ -101,6 +101,7 @@ public class Eidolon {
         event.enqueueWork(() -> {
             Spells.init();
             RitualRegistry.init();
+            IncenseRegistry.init();
             EidolonRecipes.ritualRecipeTypes.addAll(List.of(EidolonRecipes.CRAFTING_RITUAL_TYPE.get(), EidolonRecipes.SUMMON_RITUAL_TYPE.get(), EidolonRecipes.COMMAND_RITUAL_TYPE.get(), EidolonRecipes.LOCATION_RITUAL_TYPE.get(), EidolonRecipes.RITUAL_TYPE.get()));
             EidolonPotions.addBrewingRecipes();
             AltarEntries.init();

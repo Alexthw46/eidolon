@@ -18,6 +18,7 @@ import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -75,8 +76,9 @@ public abstract class StaticSpell extends Spell {
     @Override
     public boolean canCast(Level world, BlockPos pos, Player player, SignSequence signs) {
         if (getCost() > 0 && !player.isCreative()) {
-            if (player.getCapability(ISoul.INSTANCE).isPresent()) {
-                ISoul soul = player.getCapability(ISoul.INSTANCE).resolve().get();
+            LazyOptional<ISoul> capability = player.getCapability(ISoul.INSTANCE);
+            if (capability.isPresent() && capability.resolve().isPresent()) {
+                ISoul soul = capability.resolve().get();
                 if (soul.getMagic() < getCost()) {
                     if (player instanceof ServerPlayer serverPlayer)
                         serverPlayer.connection.send(new ClientboundSetActionBarTextPacket(Component.translatable("eidolon.title.no_mana")));

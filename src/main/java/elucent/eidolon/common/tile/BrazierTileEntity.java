@@ -133,7 +133,7 @@ public class BrazierTileEntity extends SingleItemTile implements IBurner {
         ritual = null;
     }
 
-    protected void extinguish() {
+    public void extinguish() {
         burning = false;
         stepCounter = 0;
         findingCounter = 0;

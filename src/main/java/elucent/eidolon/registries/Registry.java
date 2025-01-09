@@ -267,8 +267,8 @@ public class Registry {
                     .effect(() -> new MobEffectInstance(MobEffects.WITHER, 900, 1), 1.0f)
                     .build())).setLore("lore.eidolon.withered_heart"));
     public static final RegistryObject<Item> IMBUED_BONES = addItem("imbued_bones", itemProps().rarity(Rarity.UNCOMMON));
-    public static final RegistryObject<Item> SUMMONING_STAFF = addItem("summoning_staff", () -> new SummoningStaffItem(itemProps().rarity(Rarity.RARE)));
-    public static final RegistryObject<Item> DEATHBRINGER_SCYTHE = addItem("deathbringer_scythe", () -> new DeathbringerScytheItem(itemProps().rarity(Rarity.RARE))
+    public static final RegistryObject<Item> SUMMONING_STAFF = addItem("summoning_staff", () -> new SummoningStaffItem(itemProps().rarity(Rarity.RARE).stacksTo(1)));
+    public static final RegistryObject<Item> DEATHBRINGER_SCYTHE = addItem("deathbringer_scythe", () -> new DeathbringerScytheItem(itemProps().rarity(Rarity.RARE).stacksTo(1))
             .setLore("lore.eidolon.deathbringer_scythe"));
     public static final RegistryObject<Item> SOULBONE_AMULET = addItem("soulbone_amulet", () -> new SoulboneAmuletItem(itemProps()
             .rarity(Rarity.RARE).stacksTo(1)).setLore("lore.eidolon.soulbone_amulet"));
@@ -278,7 +278,7 @@ public class Registry {
     public static final RegistryObject<Item> PAROUSIA_DISC = addItem("music_disc_parousia", () -> new RecordItem(9, EidolonSounds.PAROUSIA,
             itemProps().stacksTo(1).rarity(Rarity.RARE), 3680));
     public static final RegistryObject<Item> RAVEN_FEATHER = addItem("raven_feather");
-    public static final RegistryObject<Item> RAVEN_CLOAK = addItem("raven_cloak", () -> new RavenCloakItem(itemProps().rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> RAVEN_CLOAK = addItem("raven_cloak", () -> new RavenCloakItem(itemProps().rarity(Rarity.RARE).stacksTo(1)));
     public static final RegistryObject<Item> MERAMMER_RESIN = addItem("merammer_resin");
     public static final RegistryObject<Item> MAGIC_INK = addItem("magic_ink");
     public static final RegistryObject<Item> MAGICIANS_WAX = addItem("magicians_wax");
